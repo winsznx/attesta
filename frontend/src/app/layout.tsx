@@ -4,7 +4,6 @@ import { DM_Sans, Space_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { WalletProvider } from "@/components/providers/WalletProvider";
 import { AppKitProvider } from "@/components/providers/AppKitProvider";
-import { ThirdwebProviderWrapper } from "@/components/providers/ThirdwebProvider";
 import "./globals.css";
 
 const dmSans = DM_Sans({
@@ -41,9 +40,7 @@ export default function RootLayout({
         >
           <AppKitProvider>
             <WalletProvider>
-              <ThirdwebProviderWrapper>
-                {children}
-              </ThirdwebProviderWrapper>
+              {children}
             </WalletProvider>
           </AppKitProvider>
         </ThemeProvider>
