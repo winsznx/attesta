@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "canisters": {
+    "agreement_manager": {
+      "type": "rust",
+      "package": "agreement_manager",
+      "candid": "canisters/agreement_manager/agreement_manager.did",
+      "main": "canisters/agreement_manager/src/lib.rs"
+    },
+    "proof_vault": {
+      "type": "rust",
+      "package": "proof_vault",
+      "candid": "canisters/proof_vault/proof_vault.did",
+      "main": "canisters/proof_vault/src/lib.rs"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "networks": {
+    "local": {
+      "bind": "127.0.0.1:4943",
+      "type": "ephemeral",
+      "replica": {
+        "subnet_type": "system"
+      }
+    },
+    "ic": {
+      "providers": [
+        "https://icp-api.io"
+      ],
+      "type": "persistent"
+    }
+  }
+}
