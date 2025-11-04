@@ -1,0 +1,38 @@
+type ChainProof = record {
+    chain_name: text;
+    tx_hash: text;
+    block_number: opt nat64;
+    timestamp: nat64;
+};
+
+type ProofMetadata = record {
+    signers: vec principal;
+    total_signatures: nat64;
+    creator: principal;
+    template_type: text;
+};
+
+type NotarizationProof = record {
+    id: text;
+    agreement_id: text;
+    content_hash: text;
+    notarized_at: nat64;
+    chains: vec ChainProof;
+    metadata: ProofMetadata;
+};
+
+service : {
+    create_notarization: (
+        agreement_id: text,
+        content_hash: text,
+        signers: vec principal,
+        creator: principal,
+        template_type: text
+    ) -> (text);
+    add_chain_proof: (proof_id: text, chain_proof: ChainProof) -> (bool);
+    get_proof: (id: text) -> (opt NotarizationProof) query;
+    get_proof_by_agreement: (agreement_id: text) -> (opt NotarizationProof) query;
+    verify_proof: (agreement_id: text, content_hash: text) -> (bool) query;
+    get_all_proofs: () -> (vec NotarizationProof) query;
+}
+
