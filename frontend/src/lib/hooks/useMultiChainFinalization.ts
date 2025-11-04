@@ -69,7 +69,6 @@ export function useMultiChainFinalization() {
 
       try {
         // Step 1: Create notarization proof in ICP Proof Vault
-        console.log("📝 Creating notarization proof in ICP...");
         const proofId = await ProofVaultService.createNotarizationProof(
           agreement.id,
           agreement.content_hash,
@@ -119,7 +118,6 @@ export function useMultiChainFinalization() {
         }
 
         // Add Constellation chain proof to ICP Proof Vault
-        console.log("📝 Adding Constellation proof to Proof Vault...");
         await ProofVaultService.addChainProof(proofId, {
           chainName: "Constellation",
           txHash: validationResult.dag_hash,
@@ -191,7 +189,6 @@ export function useMultiChainFinalization() {
         }
 
         // Add Ethereum chain proof to ICP Proof Vault
-        console.log("📝 Adding Ethereum proof to Proof Vault...");
         await ProofVaultService.addChainProof(proofId, {
           chainName: "Ethereum",
           txHash: mintResult.tokenId, // Using tokenId as transaction reference
@@ -213,7 +210,6 @@ export function useMultiChainFinalization() {
         setIsProcessing(false);
         return true;
       } catch (error) {
-        console.error("Multi-chain finalization error:", error);
         setStatus({
           constellation: status.constellation,
           ethereum: status.ethereum,
