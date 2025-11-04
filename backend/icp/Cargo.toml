@@ -1,0 +1,11 @@
+[workspace]
+members = [
+    "canisters/agreement_manager",
+    "canisters/proof_vault",
+]
+resolver = "2"
+
+[profile.release]
+opt-level = "z"     # Optimize for size
+lto = true          # Enable link-time optimization
+codegen-units = 1   # Better optimization
