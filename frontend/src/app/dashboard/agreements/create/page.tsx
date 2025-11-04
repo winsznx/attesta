@@ -128,15 +128,9 @@ export default function CreateAgreementPage() {
       }
 
       const data = await response.json();
-      console.log("📥 Received AI response:", {
-        contentLength: data.content?.length,
-        model: data.model,
-        preview: data.content?.substring(0, 100),
-      });
       setAiContent(data.content);
       setStep("review");
     } catch (error) {
-      console.error("AI Generation Error:", error);
       alert("Failed to generate document. Please try again.");
     } finally {
       setIsGenerating(false);
@@ -179,7 +173,6 @@ export default function CreateAgreementPage() {
           } catch {
             // If not a valid principal, generate a unique placeholder
             // In production, you'd want to convert Ethereum addresses properly
-            console.warn(`Invalid principal: ${trimmedAddr}, using placeholder`);
             partyPrincipals.push(Principal.anonymous().toText());
           }
         }
@@ -199,7 +192,6 @@ export default function CreateAgreementPage() {
 
       router.push(`/dashboard/agreements/${agreementId}`);
     } catch (error: any) {
-      console.error("Create Agreement Error:", error);
       const errorMessage = error?.message || "Failed to create agreement";
       alert(`Failed to create agreement: ${errorMessage}`);
     } finally {
