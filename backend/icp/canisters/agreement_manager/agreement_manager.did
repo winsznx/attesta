@@ -1,0 +1,56 @@
+type AgreementStatus = variant {
+    Draft;
+    Pending;
+    Signed;
+    Cancelled;
+};
+
+type Signature = record {
+    signer: principal;
+    signed_at: nat64;
+    signature_hash: text;
+};
+
+type Agreement = record {
+    id: text;
+    template_type: text;
+    title: text;
+    content_hash: text;
+    creator: principal;
+    parties: vec principal;
+    status: AgreementStatus;
+    signatures: vec Signature;
+    created_at: nat64;
+    updated_at: nat64;
+};
+
+type UserStats = record {
+    total_agreements: nat64;
+    pending_signatures: nat64;
+    signed_agreements: nat64;
+};
+
+service : {
+    // Create new agreement
+    create_agreement: (
+        template_type: text,
+        title: text,
+        content_hash: text,
+        parties: vec principal
+    ) -> (text);
+
+    // Get single agreement
+    get_agreement: (id: text) -> (opt Agreement) query;
+
+    // Get all agreements for a user
+    get_user_agreements: (user: principal) -> (vec Agreement) query;
+
+    // Update agreement status
+    update_status: (id: text, status: text) -> (bool);
+
+    // Get agreement count for stats
+    get_user_stats: (user: principal) -> (UserStats) query;
+
+    // Sign an agreement
+    sign_agreement: (id: text) -> (bool);
+}
