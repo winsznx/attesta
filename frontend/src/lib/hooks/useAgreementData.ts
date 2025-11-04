@@ -56,12 +56,7 @@ export function useAgreementData(userPrincipal?: string, ethAddress?: string | n
       setAgreements(convertedAgreements);
       setStats(statsData);
 
-      console.log("✅ Loaded data from ICP:", {
-        agreements: agreementsData.length,
-        stats: statsData,
-      });
     } catch (err) {
-      console.error("Failed to load data from ICP:", err);
       setError("Failed to connect to ICP canister");
     } finally {
       setLoading(false);
@@ -86,14 +81,11 @@ export function useAgreementData(userPrincipal?: string, ethAddress?: string | n
         partiesPrincipals
       );
 
-      console.log("✅ Created agreement:", agreementId);
-
       // Reload data
       await loadData();
 
       return agreementId;
     } catch (err) {
-      console.error("Failed to create agreement:", err);
       throw err;
     }
   }
