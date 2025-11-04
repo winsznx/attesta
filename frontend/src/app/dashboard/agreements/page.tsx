@@ -38,7 +38,6 @@ export default function AgreementsPage() {
       // Derive Principal from Ethereum address
       const principal = getUserPrincipalFromWallet(address);
       setUserPrincipal(principal.toText());
-      console.log("📝 Using Principal for wallet:", address, "→", principal.toText());
     }
   }, [address]);
 
