@@ -17,9 +17,7 @@ export async function getAgreementActor(): Promise<AgreementManagerActor> {
   if (host.includes("localhost") || host.includes("127.0.0.1")) {
     try {
       await agent.fetchRootKey();
-      console.log("✅ Fetched root key for local development");
     } catch (error) {
-      console.error("Failed to fetch root key:", error);
     }
   }
 
