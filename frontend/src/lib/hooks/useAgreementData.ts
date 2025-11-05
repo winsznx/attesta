@@ -36,28 +36,44 @@ export function useAgreementData(userPrincipal?: string, ethAddress?: string | n
       setLoading(true);
       setError(null);
 
-      const actor = await getAgreementManagerActor();
-      // Get principal: use provided principal, or derive from Ethereum address
-      const principal = userPrincipal
-        ? convertPartyToPrincipal(userPrincipal)
-        : ethAddress
-        ? getUserPrincipalFromWallet(ethAddress)
-        : Principal.anonymous();
+      // Add timeout to prevent hanging (10 seconds)
+      const timeoutPromise = new Promise((_, reject) =>
+        setTimeout(() => reject(new Error("Request timeout")), 10000)
+      );
 
-      // Fetch agreements and stats in parallel
-      const [agreementsData, statsData] = await Promise.all([
-        actor.get_user_agreements(principal),
-        actor.get_user_stats(principal),
-      ]);
+      const dataPromise = (async () => {
+        const actor = await getAgreementManagerActor();
+        // Get principal: use provided principal, or derive from Ethereum address
+        const principal = userPrincipal
+          ? convertPartyToPrincipal(userPrincipal)
+          : ethAddress
+          ? getUserPrincipalFromWallet(ethAddress)
+          : Principal.anonymous();
 
-      // Convert agreements from canister format to UI format
-      const convertedAgreements = agreementsData.map(convertAgreement);
+        // Fetch agreements and stats in parallel
+        const [agreementsData, statsData] = await Promise.all([
+          actor.get_user_agreements(principal),
+          actor.get_user_stats(principal),
+        ]);
 
-      setAgreements(convertedAgreements);
-      setStats(statsData);
+        // Convert agreements from canister format to UI format
+        const convertedAgreements = agreementsData.map(convertAgreement);
 
-    } catch (err) {
-      setError("Failed to connect to ICP canister");
+        return { agreements: convertedAgreements, stats: statsData };
+      })();
+
+      // Race between data loading and timeout
+      const result = await Promise.race([dataPromise, timeoutPromise]) as any;
+
+      setAgreements(result.agreements);
+      setStats(result.stats);
+
+    } catch (err: any) {
+      const errorMsg = err?.message?.includes("timeout")
+        ? "Request timed out. Make sure ICP backend is running (cd backend/icp && dfx start)"
+        : "Failed to connect to ICP canister";
+      setError(errorMsg);
+      console.error("Load data error:", err);
     } finally {
       setLoading(false);
     }
