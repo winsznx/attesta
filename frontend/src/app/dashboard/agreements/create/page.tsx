@@ -32,6 +32,8 @@ import {
 } from "lucide-react";
 import { useWallet } from "@/components/providers/WalletProvider";
 import { useAgreementData } from "@/lib/hooks/useAgreementData";
+import { useX402Payment } from "@/lib/hooks/useX402Payment";
+import { X402PaymentModal } from "@/components/payment/X402PaymentModal";
 import { sha256 } from "js-sha256";
 import { Principal } from "@dfinity/principal";
 import { convertPartyToPrincipal } from "@/lib/blockchain/icp/address-converter";
@@ -85,6 +87,7 @@ const TEMPLATES = [
 export default function CreateAgreementPage() {
   const router = useRouter();
   const { address } = useWallet();
+  const { fetch: x402Fetch, paymentState, handlers } = useX402Payment();
   const [step, setStep] = useState<"template" | "details" | "ai" | "review">(
     "template"
   );
@@ -111,7 +114,8 @@ export default function CreateAgreementPage() {
 
     setIsGenerating(true);
     try {
-      const response = await fetch("/api/ai/generate", {
+      // Use X402-enabled fetch that handles payments automatically
+      const response = await x402Fetch("/api/ai/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,8 +134,11 @@ export default function CreateAgreementPage() {
       const data = await response.json();
       setAiContent(data.content);
       setStep("review");
-    } catch (error) {
-      alert("Failed to generate document. Please try again.");
+    } catch (error: any) {
+      // Only show alert if it's not a payment cancellation
+      if (!error?.message?.includes("cancelled")) {
+        alert("Failed to generate document. Please try again.");
+      }
     } finally {
       setIsGenerating(false);
     }
@@ -178,9 +185,10 @@ export default function CreateAgreementPage() {
         }
       }
 
-      // Add creator as first party (using anonymous for now)
-      // TODO: Get actual user principal from wallet connection
-      const creatorPrincipal = Principal.anonymous().toText();
+      // Add creator as first party (derive from connected wallet)
+      const creatorPrincipal = address
+        ? convertPartyToPrincipal(address).toText()
+        : Principal.anonymous().toText();
       const allParties = [creatorPrincipal, ...partyPrincipals];
 
       const agreementId = await createAgreement(
@@ -602,6 +610,15 @@ export default function CreateAgreementPage() {
           </Card>
         </motion.div>
       )}
+
+      {/* X402 Payment Modal */}
+      <X402PaymentModal
+        isOpen={paymentState.isPaymentRequired}
+        onClose={handlers.onPaymentCancel}
+        paymentInfo={paymentState.paymentInfo}
+        onPaymentSuccess={handlers.onPaymentSuccess}
+        onPaymentError={handlers.onPaymentError}
+      />
     </div>
   );
 }
