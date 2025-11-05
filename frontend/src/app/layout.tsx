@@ -22,6 +22,31 @@ export const metadata: Metadata = {
   title: "Attesta - Verify anything, prove everything",
   description:
     "Multi-chain legal document platform powered by AI, ICP, Constellation, Ethereum, and x402. Create, sign, and verify legal agreements with blockchain-backed proof.",
+  icons: {
+    icon: "/attesta.jpg",
+    apple: "/attesta.jpg",
+  },
+  openGraph: {
+    title: "Attesta - Verify anything, prove everything",
+    description:
+      "Multi-chain legal document platform powered by AI, ICP, Constellation, Ethereum, and x402. Create, sign, and verify legal agreements with blockchain-backed proof.",
+    images: [
+      {
+        url: "/attesta.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Attesta - AI-powered legal agreement platform",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Attesta - Verify anything, prove everything",
+    description:
+      "Multi-chain legal document platform powered by AI, ICP, Constellation, Ethereum, and x402.",
+    images: ["/attesta.jpg"],
+  },
 };
 
 export default function RootLayout({
