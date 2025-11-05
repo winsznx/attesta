@@ -58,18 +58,16 @@ export function X402PaymentModal({
     setErrorMessage(null);
 
     try {
-      // Import the preparePayment function from Nexus SDK
-      const { preparePayment } = await import("@thirdweb-dev/nexus");
-
-      // Prepare the payment using Nexus SDK
-      const payment = await preparePayment({
+      // TODO: Implement X402 payment with Nexus SDK
+      // For now, create a mock payment structure
+      const payment = {
         resourceUrl: paymentInfo.resourceUrl,
-        method: paymentInfo.method as any,
+        method: paymentInfo.method,
         network: "base-sepolia",
         price: paymentInfo.price,
-        // Use the connected wallet's provider
-        // The SDK will prompt the user to sign the transaction
-      });
+        timestamp: Date.now(),
+        payer: address,
+      };
 
       // Encode payment data as base64
       const paymentData = btoa(JSON.stringify(payment));
