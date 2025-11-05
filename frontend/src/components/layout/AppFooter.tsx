@@ -86,7 +86,7 @@ export function AppFooter() {
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Attesta. All rights reserved.</p>
+          <p>&copy; 2025 Attesta. All rights reserved.</p>
         </div>
       </div>
     </footer>

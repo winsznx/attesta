@@ -20,7 +20,7 @@ export function AppKitProvider({ children }: AppKitProviderProps) {
   // Check initialization after mount
   useEffect(() => {
     if (!appKitInitialized) {
-      console.warn("⚠️ AppKit not initialized - wallet features may not work");
+      console.warn("WARNING: AppKit not initialized - wallet features may not work");
     }
   }, []);
 

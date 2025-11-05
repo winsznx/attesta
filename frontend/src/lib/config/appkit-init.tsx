@@ -15,7 +15,7 @@ export function initializeAppKit() {
 
   if (!projectId || projectId.trim() === "") {
     console.error(
-      "❌ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set!\n" +
+      "ERROR: NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID is not set!\n" +
       "Please ensure .env.local exists in frontend/ with:\n" +
       "NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id"
     );

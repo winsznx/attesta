@@ -205,7 +205,7 @@ export default function CreateAgreementPage() {
       );
 
       if (result.constellationDagHash) {
-        console.log("✅ Agreement validated on Constellation:", {
+        console.log("Agreement validated on Constellation:", {
           dagHash: result.constellationDagHash,
           ordinal: result.constellationOrdinal,
         });

@@ -138,7 +138,7 @@ export class ConstellationClient {
         explorer_url: `${this.blockExplorerUrl}/snapshots/${networkInfo.ordinal}`,
       };
 
-      console.log("✅ Constellation validation created:", {
+      console.log("Constellation validation created:", {
         dagHash,
         ordinal: networkInfo.ordinal,
         network: this.isMainnet ? "MainNet" : "TestNet",

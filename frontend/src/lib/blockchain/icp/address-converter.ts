@@ -18,8 +18,8 @@ import { sha256 } from "js-sha256";
  * 
  * For localhost development, this creates a deterministic Principal
  * from an Ethereum address using a hash-based derivation.
- * 
- * ⚠️ NOTE: This is a development-only solution.
+ *
+ * NOTE: This is a development-only solution.
  * For production, use Internet Identity or proper auth.
  */
 export function ethereumAddressToPrincipal(

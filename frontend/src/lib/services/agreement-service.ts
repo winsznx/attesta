@@ -39,7 +39,7 @@ export async function createAgreementWithValidation(
 ): Promise<AgreementCreationResult> {
   try {
     // Step 1: Create agreement on ICP
-    console.log("📝 Creating agreement on ICP...");
+    console.log("Creating agreement on ICP...");
     const agreementId = await icpCreateFn(
       request.templateType,
       request.title,
@@ -47,10 +47,10 @@ export async function createAgreementWithValidation(
       request.parties
     );
 
-    console.log("✅ Agreement created on ICP:", agreementId);
+    console.log("Agreement created on ICP:", agreementId);
 
     // Step 2: Validate on Constellation Network (parallel, non-blocking)
-    console.log("🌌 Validating on Constellation Network...");
+    console.log("Validating on Constellation Network...");
 
     try {
       const constellationRequest: ValidationRequest = {
@@ -70,7 +70,7 @@ export async function createAgreementWithValidation(
       );
 
       if (constellationResult.success) {
-        console.log("✅ Constellation validation successful:", {
+        console.log("Constellation validation successful:", {
           dagHash: constellationResult.dag_hash,
           ordinal: constellationResult.snapshot_ordinal,
         });
@@ -84,7 +84,7 @@ export async function createAgreementWithValidation(
             : undefined,
         };
       } else {
-        console.warn("⚠️ Constellation validation failed:", constellationResult.error);
+        console.warn("WARNING: Constellation validation failed:", constellationResult.error);
 
         // Return agreement ID even if Constellation validation fails
         return {
@@ -93,7 +93,7 @@ export async function createAgreementWithValidation(
         };
       }
     } catch (constellationError) {
-      console.error("❌ Constellation validation error:", constellationError);
+      console.error("ERROR: Constellation validation error:", constellationError);
 
       // Return agreement ID even if Constellation fails
       return {
@@ -102,7 +102,7 @@ export async function createAgreementWithValidation(
       };
     }
   } catch (error) {
-    console.error("❌ Agreement creation failed:", error);
+    console.error("ERROR: Agreement creation failed:", error);
     throw error;
   }
 }
@@ -116,14 +116,14 @@ export async function testConstellationConnection(): Promise<boolean> {
 
     if (isAvailable) {
       const networkInfo = await constellationClient.getNetworkInfo();
-      console.log("✅ Constellation network connected:", networkInfo);
+      console.log("Constellation network connected:", networkInfo);
     } else {
-      console.warn("⚠️ Constellation network not available");
+      console.warn("WARNING: Constellation network not available");
     }
 
     return isAvailable;
   } catch (error) {
-    console.error("❌ Constellation connection test failed:", error);
+    console.error("ERROR: Constellation connection test failed:", error);
     return false;
   }
 }
