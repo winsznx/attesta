@@ -58,10 +58,7 @@ export class CertificateNFTService {
    */
   async initialize(signer: Signer): Promise<void> {
     try {
-      this.sdk = await ThirdwebSDK.fromSigner(signer, {
-        chainId: this.chain.chainId,
-        rpc: [this.chain.rpc[0]],
-      });
+      this.sdk = await ThirdwebSDK.fromSigner(signer, this.chain);
     } catch (error) {
       console.error("Failed to initialize Thirdweb SDK:", error);
       throw error;
