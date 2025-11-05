@@ -1,393 +1,353 @@
-# Attesta - Multi-Chain Legal Document Platform
+# Attesta - Multi-Chain Legal Agreement Platform
 
-Blockchain-backed legal agreement platform with AI-powered contract generation, multi-party signing, and automated certificate NFT minting.
+> Verify anything, prove everything. AI-powered legal agreements with blockchain-backed proof across ICP, Constellation, and Ethereum.
 
-## Overview
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![ICP Mainnet](https://img.shields.io/badge/ICP-Mainnet-29ABE2)](https://dashboard.internetcomputer.org)
+[![Constellation](https://img.shields.io/badge/Constellation-TestNet-blueviolet)](https://testnet-explorer.constellationnetwork.io)
 
-Attesta enables users to create, sign, and verify legal agreements with cryptographic proof across multiple blockchains. AI assistance simplifies contract creation, while multi-chain storage ensures tamper-proof records and public verifiability.
+## 🌟 Overview
 
-**Core Features:**
-- AI-powered legal document generation (OpenAI)
-- Multi-chain notarization (ICP + Constellation + Ethereum)
-- Multi-party EVM wallet signing
-- Automated NFT certificate minting
-- Public verification system
-- Micropayment-protected API endpoints (x402 + Thirdweb Nexus)
+Attesta is a production-ready legal document platform that leverages multiple blockchain networks to provide unprecedented security and verification:
 
-## Technology Stack
+- **ICP (Internet Computer)**: Primary storage and state management on mainnet
+- **Constellation Network**: DAG-based validation with HGTP protocol
+- **Ethereum/Base**: NFT certificate minting for visual proof
+- **AI Generation**: GPT-4 powered document creation with X402 micropayments
 
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Frontend** | Next.js 14, Tailwind, Shadcn UI | User interface |
-| **Authentication** | WalletConnect, Internet Identity | Multi-wallet support |
-| **AI** | OpenAI GPT-4 | Contract generation |
-| **Primary Storage** | Internet Computer (ICP) | Agreement storage & logic |
-| **Validation** | Constellation DAG | Data validation |
-| **Certificates** | Ethereum (Base Sepolia) | ERC-721 NFT certificates |
-| **Payments** | Thirdweb Nexus | Micropayments (x402) |
+## 🎯 Live Deployment
 
-## Architecture
+### ICP Mainnet Canisters
+- **Agreement Manager**: [`g5tri-niaaa-aaaag-auhuq-cai`](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=g5tri-niaaa-aaaag-auhuq-cai)
+- **Proof Vault**: [`guq2u-3aaaa-aaaag-auhva-cai`](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=guq2u-3aaaa-aaaag-auhva-cai)
 
-```
-┌─────────────────────────────────────────┐
-│  Frontend (Next.js + WalletConnect)     │
-│  React UI + AI Assistant                │
-└────────────┬────────────────────────────┘
-             │
-    ┌────────┼────────┬────────┬─────────┐
-    │        │        │        │         │
-┌───▼───┐ ┌─▼───┐ ┌──▼────┐ ┌─▼──┐ ┌────▼────┐
-│  ICP  │ │Const│ │Ethereum│ │x402│ │ Nexus   │
-│Storage│ │ DAG │ │  NFTs  │ │Pay │ │Gateway  │
-└───────┘ └─────┘ └────────┘ └────┘ └─────────┘
-```
+### Ethereum Contracts
+- **NFT Certificate (Base Sepolia)**: [`0xb149C3f586098aa78d892FBEeF5361c8296B5697`](https://sepolia.basescan.org/address/0xb149C3f586098aa78d892FBEeF5361c8296B5697)
 
-## Project Structure
+### Constellation Network
+- **Network**: TestNet L0 Global Network
+- **Protocol**: HGTP 1.0 compliant
+- **Validation**: Real-time DAG proof generation
+
+## 🏗️ Architecture
 
 ```
-attesta/
-├── frontend/                    # Next.js Application
-│   ├── src/
-│   │   ├── app/                # App router pages
-│   │   │   ├── (public)/       # Landing page
-│   │   │   ├── dashboard/      # User dashboard
-│   │   │   └── api/            # API routes
-│   │   ├── components/         # React components
-│   │   │   ├── dashboard/      # Dashboard UI
-│   │   │   ├── agreements/     # Agreement forms
-│   │   │   ├── wallet/         # Wallet connection
-│   │   │   └── ui/             # Reusable components
-│   │   └── lib/
-│   │       ├── blockchain/     # Blockchain clients
-│   │       │   ├── icp/        # ICP integration
-│   │       │   ├── constellation/ # DAG validation
-│   │       │   ├── ethereum/   # NFT minting
-│   │       │   └── thirdweb/   # Nexus + x402
-│   │       ├── hooks/          # React hooks
-│   │       └── services/       # Business logic
-│   ├── contracts/              # Smart contracts
-│   │   └── AttestaCertificate.sol  # ERC-721 NFT
-│   ├── scripts/                # Deployment scripts
-│   └── public/                 # Static assets
-│
-└── backend/
-    └── icp/                    # Internet Computer Backend
-        └── canisters/
-            ├── agreement_manager/  # CRUD operations
-            └── proof_vault/        # Signature storage
+┌─────────────────────────────────────────────────────────┐
+│                    Frontend (Next.js)                    │
+│  • Multi-wallet support (WalletConnect, AppKit)         │
+│  • AI document generation with payment modal            │
+│  • Real-time multi-chain validation                     │
+└──────────────┬──────────────┬──────────────┬───────────┘
+               │              │              │
+       ┌───────▼──────┐  ┌───▼────────┐  ┌─▼──────────┐
+       │              │  │            │  │            │
+       │   ICP        │  │Constellation│  │ Ethereum   │
+       │   Mainnet    │  │  TestNet   │  │Base Sepolia│
+       │              │  │            │  │            │
+       │ • Agreements │  │ • DAG Hash │  │ • NFT Cert │
+       │ • Storage    │  │ • HGTP     │  │ • ERC-721  │
+       │ • Rust       │  │ • Proof    │  │ • Solidity │
+       └──────────────┘  └────────────┘  └────────────┘
 ```
 
-## Quick Start
+## 🚀 Quick Start
 
 ### Prerequisites
 
 ```bash
-# Node.js 18+
-node --version
+# Node.js & npm
+node --version  # v18.0.0 or higher
+npm --version   # v8.0.0 or higher
 
-# pnpm (recommended)
-npm install -g pnpm
-
-# ICP dfx CLI
-sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
+# For ICP development
+dfx --version   # v0.22.0 or higher
 
 # Rust (for ICP canisters)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-rustup target add wasm32-unknown-unknown
+rustc --version # v1.70.0 or higher
 ```
 
 ### Installation
 
 ```bash
-# Clone repository
-cd attesta/frontend
+# Clone the repository
+git clone https://github.com/winsznx/attesta.git
+cd attesta
 
-# Install dependencies
-pnpm install
+# Install frontend dependencies
+cd frontend
+npm install
 
-# Configure environment
-cp .env.example .env.local
-# Edit .env.local with your API keys (see Configuration section)
-
-# Start ICP local replica (in separate terminal)
+# Install backend dependencies (ICP)
 cd ../backend/icp
-dfx start --background
-
-# Deploy ICP canisters
-dfx deploy
-
-# Return to frontend and start development server
-cd ../../frontend
-pnpm dev
+cargo build
 ```
 
-Open http://localhost:3000
+## ⚙️ Environment Configuration
 
-### Configuration
-
-Create `.env.local` with the following:
-
-```bash
-# WalletConnect (get from https://cloud.walletconnect.com)
-NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
-
-# ICP Canister IDs (auto-generated after dfx deploy)
-NEXT_PUBLIC_AGREEMENT_MANAGER_CANISTER_ID=your_canister_id
-NEXT_PUBLIC_PROOF_VAULT_CANISTER_ID=your_canister_id
-NEXT_PUBLIC_ICP_HOST=http://localhost:4943
-
-# OpenAI for AI contract generation
-OPENAI_API_KEY=sk-...
-
-# Thirdweb Nexus for micropayments
-NEXUS_WALLET_SECRET=your_wallet_secret
-
-# Base Sepolia (testnet) - NFT contract
-NEXT_PUBLIC_NFT_CONTRACT_BASE_SEPOLIA=0xb149C3f586098aa78d892FBEeF5361c8296B5697
-
-# Deployment keys (for production)
-DEPLOYER_PRIVATE_KEY=your_private_key
-BASESCAN_API_KEY=your_api_key
-```
-
-## User Flow
-
-1. **Connect Wallet** - User connects EVM wallet via WalletConnect
-2. **Create Agreement** - AI generates legal document from user description
-3. **Add Parties** - User specifies signing parties (wallet addresses)
-4. **Store on ICP** - Agreement stored on Internet Computer with hash
-5. **Multi-Party Signing** - Parties sign with their wallets
-6. **Automated Minting** - After all signatures, NFT certificate auto-mints on Base Sepolia
-7. **Constellation Validation** - Agreement validated on DAG network
-8. **Certificate Delivery** - User receives NFT + downloadable proof
-9. **Public Verification** - Anyone can verify authenticity via blockchain
-
-## Smart Contract Deployment
-
-### Deploy NFT Contract to Base Sepolia
+### Step 1: Copy Environment Template
 
 ```bash
 cd frontend
-
-# Compile contracts
-pnpm compile
-
-# Deploy to Base Sepolia testnet
-pnpm deploy:base-sepolia
-
-# Verify on BaseScan
-pnpm verify:base-sepolia <contract_address>
+cp .env.example .env.local
 ```
 
-**Deployed Contract**: `0xb149C3f586098aa78d892FBEeF5361c8296B5697` (Base Sepolia)
-**View on BaseScan**: https://sepolia.basescan.org/address/0xb149C3f586098aa78d892FBEeF5361c8296B5697
+### Step 2: Configure Required Variables
 
-### Contract Features
+Open `.env.local` and fill in the following:
 
-- ERC-721 NFT standard
-- On-chain agreement ID and content hash storage
-- Multi-chain proof tracking (ICP canister ID, Constellation DAG hash)
-- Certificate verification functions
-- Pausable for emergency stops
-- ReentrancyGuard for security
-- Owner-only minting
-
-## ICP Canister Deployment
+#### 🔑 **Required for Development:**
 
 ```bash
+# WalletConnect Project ID (Get from: https://cloud.reown.com/)
+NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id_here
+
+# OpenAI API Key (Get from: https://platform.openai.com/api-keys)
+OPENAI_API_KEY=sk-...your_key_here
+
+# Nexus Wallet Secret (Get from: https://nexus.thirdweb.com)
+NEXUS_WALLET_SECRET=your_secret_here
+```
+
+#### 🌐 **Network Configuration:**
+
+**For Mainnet (Production):**
+```bash
+NEXT_PUBLIC_AGREEMENT_MANAGER_CANISTER_ID=g5tri-niaaa-aaaag-auhuq-cai
+NEXT_PUBLIC_PROOF_VAULT_CANISTER_ID=guq2u-3aaaa-aaaag-auhva-cai
+NEXT_PUBLIC_ICP_HOST=https://icp-api.io
+NEXT_PUBLIC_CONSTELLATION_NETWORK=testnet
+```
+
+**For Local Development:**
+```bash
+# Start local ICP replica first: cd backend/icp && dfx start
+NEXT_PUBLIC_AGREEMENT_MANAGER_CANISTER_ID=your_local_canister_id
+NEXT_PUBLIC_PROOF_VAULT_CANISTER_ID=your_local_canister_id
+NEXT_PUBLIC_ICP_HOST=http://localhost:4943
+NEXT_PUBLIC_CONSTELLATION_NETWORK=testnet
+```
+
+#### 🔐 **Important Security Notes:**
+
+- ⚠️ **NEVER commit `.env.local` to git!**
+- ✅ `.env.local` is already in `.gitignore`
+- ✅ Use `.env.example` as a reference only
+- ✅ Use different keys for development and production
+- ✅ Keep your private keys secure
+
+### Step 3: Verify Configuration
+
+```bash
+# Check that .env.local exists and is not tracked by git
+ls -la .env.local  # Should exist
+git status         # Should NOT show .env.local
+```
+
+## 🏃 Running the Application
+
+### Option 1: Production (Mainnet)
+
+```bash
+# Frontend connects to deployed ICP mainnet canisters
+cd frontend
+npm run dev
+
+# Access at http://localhost:3000
+# Or from network: http://YOUR_IP:3000
+```
+
+### Option 2: Local Development
+
+```bash
+# Terminal 1: Start ICP replica
 cd backend/icp
+dfx start --clean
 
-# Start local replica
-dfx start --background
-
-# Deploy canisters
+# Terminal 2: Deploy canisters
 dfx deploy
 
-# Test canister
-dfx canister call agreement_manager create_agreement '("nda", "Test Agreement", "hash123", vec {})'
+# Terminal 3: Start frontend
+cd frontend
+npm run dev
 ```
 
-### Production Deployment (IC Mainnet)
+## 🌍 Deploying to Production
+
+### Frontend Deployment (Vercel - Recommended)
 
 ```bash
-# Deploy to mainnet
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+cd frontend
+vercel
+
+# Set environment variables in Vercel dashboard:
+# https://vercel.com/dashboard/project/settings/environment-variables
+```
+
+### ICP Mainnet Deployment (Already Done!)
+
+```bash
+# Create secure identity
+dfx identity new attesta_mainnet
+dfx identity use attesta_mainnet
+
+# Redeem cycles coupon
+dfx cycles redeem-faucet-coupon YOUR_COUPON_CODE --network ic
+
+# Create and deploy canisters
+dfx canister create --all --network ic
+dfx build --network ic
 dfx deploy --network ic
 
-# Your canisters will be live at:
-# https://<canister-id>.icp0.io
+# Note the canister IDs and update frontend .env.local
 ```
 
-## API Endpoints
+## 🧪 Testing
 
-### AI Generation (`POST /api/ai/generate`)
-
-Generates legal documents using OpenAI GPT-4.
-
-**Payment**: $0.10 per generation (via x402 + Nexus)
-
-**Request**:
-```json
-{
-  "description": "NDA for software development project",
-  "templateType": "nda",
-  "context": "5-year term, mutual confidentiality"
-}
-```
-
-**Response**:
-```json
-{
-  "content": "# NON-DISCLOSURE AGREEMENT\n\n...",
-  "model": "gpt-4o-mini",
-  "usage": { "total_tokens": 1234 }
-}
-```
-
-### Payment Middleware (x402)
-
-Protected endpoints automatically handle micropayments via Thirdweb Nexus:
-
-```typescript
-// Example: Protect API route with payment
-export const POST = withX402Payment(
-  async (request) => {
-    // Your API logic
-    return Response.json({ data: "success" });
-  },
-  { endpoint: "AI_GENERATION" }
-);
-```
-
-**Configured Endpoints**:
-- AI Generation: $0.10
-- AI Explanation: $0.05
-- NFT Minting: $0.50
-- Constellation Validation: $0.05
-
-**Network**: Base Sepolia testnet
-
-## Development
-
-### Commands
+### Test ICP Canisters (Local)
 
 ```bash
-# Frontend
-pnpm dev              # Start dev server
-pnpm build            # Build for production
-pnpm lint             # Run ESLint
-pnpm type-check       # TypeScript validation
-
-# Smart Contracts
-pnpm compile          # Compile Solidity contracts
-pnpm deploy:base-sepolia  # Deploy to Base Sepolia
-
-# ICP Canisters
-dfx start --background    # Start local replica
-dfx deploy                # Deploy canisters
-dfx canister call <name> <method> '<args>'  # Call canister
-```
-
-### Testing
-
-```bash
-# ICP canister tests
 cd backend/icp
-cargo test
 
-# Frontend tests (when implemented)
+# Test agreement creation
+dfx canister call agreement_manager create_agreement '(
+  "freelance",
+  "Test Agreement",
+  "hash123",
+  vec {principal "aaaaa-aa"}
+)'
+```
+
+### Test Constellation Integration
+
+```bash
+# Check console logs when creating an agreement
+# Look for: ✅ Constellation validation created
+```
+
+### Test Frontend
+
+```bash
 cd frontend
-pnpm test
+npm test              # Run unit tests
+npm run build         # Test production build
+npm run type-check    # Check TypeScript errors
 ```
 
-## Stub Files (Not Yet Implemented)
+## 📁 Project Structure
 
-The following pages are stubs awaiting implementation:
-
-1. `/src/app/(public)/about/page.tsx` - About page
-2. `/src/app/(public)/pricing/page.tsx` - Pricing page
-3. `/src/app/dashboard/analytics/page.tsx` - Analytics dashboard
-4. `/src/app/dashboard/reports/submit/page.tsx` - Report submission
-5. `/src/app/dashboard/certificates/[tokenId]/page.tsx` - Certificate details
-6. `/src/app/api/ai/explain/route.ts` - AI explanation endpoint
-
-## Security Features
-
-### Smart Contract Security
-- **ReentrancyGuard** - Prevents reentrancy attacks
-- **Pausable** - Emergency stop mechanism
-- **Ownable** - Access control for minting
-- **Verification Functions** - On-chain certificate validation
-
-### Application Security
-- **x402 Micropayments** - Rate limiting via payment
-- **Content Hashing** - SHA-256 for tamper detection
-- **Multi-Chain Verification** - Cross-reference across 3 blockchains
-- **Wallet Authentication** - Cryptographic signature verification
-
-## Troubleshooting
-
-### ICP Connection Issues
-
-```bash
-# Check if dfx is running
-dfx ping
-
-# Restart replica
-dfx stop
-dfx start --clean --background
-
-# Redeploy canisters
-dfx deploy
+```
+attesta/
+├── frontend/                # Next.js 14 App Router
+│   ├── src/
+│   │   ├── app/            # Pages and API routes
+│   │   ├── components/     # React components
+│   │   ├── lib/            # Core libraries
+│   │   │   ├── blockchain/ # Multi-chain clients
+│   │   │   │   ├── icp/           # ICP integration
+│   │   │   │   ├── constellation/ # Constellation client
+│   │   │   │   └── ethereum/      # Ethereum/Base
+│   │   │   ├── hooks/      # React hooks
+│   │   │   └── services/   # Business logic
+│   │   └── contracts/      # Solidity contracts
+│   ├── .env.example        # Environment template
+│   └── package.json
+│
+├── backend/
+│   └── icp/                # ICP Rust canisters
+│       ├── canisters/
+│       │   ├── agreement_manager/  # Main canister
+│       │   └── proof_vault/        # Proof storage
+│       ├── dfx.json        # ICP configuration
+│       └── Cargo.toml
+│
+├── LICENSE                 # MIT License
+└── README.md              # This file
 ```
 
-### Wallet Connection Issues
+## 🔑 Key Features
 
-- Ensure WalletConnect Project ID is set in `.env.local`
-- Check browser console for errors
-- Try clearing browser cache
-- Verify wallet extension is installed
+### 1. Multi-Chain Validation
+- **ICP**: Primary storage with Rust canisters
+- **Constellation**: DAG-based immutable proof
+- **Ethereum**: NFT certificates for visual ownership
 
-### Build Errors
+### 2. AI Document Generation
+- GPT-4 powered legal document creation
+- Template-based generation (NDA, Employment, etc.)
+- X402 micropayment protection ($0.10 per generation)
 
-```bash
-# Clear Next.js cache
-rm -rf .next
+### 3. X402 Micropayments (Nexus)
+- Pay-per-use API model
+- Thirdweb Nexus integration
+- Payment modal with wallet connection
 
-# Reinstall dependencies
-rm -rf node_modules pnpm-lock.yaml
-pnpm install
+### 4. Production-Ready
+- TypeScript + Rust
+- Error handling and timeouts
+- Responsive UI with Tailwind CSS
+- Multi-wallet support
 
-# Rebuild
-pnpm build
-```
+## 🎥 Demo Video
 
-## Production Deployment
+[Link to demo video] - Coming soon!
 
-### Frontend (Vercel/ICP)
+**What the demo shows:**
+1. Complete agreement creation flow
+2. AI document generation with payment
+3. Multi-chain validation (ICP + Constellation + Ethereum)
+4. NFT certificate minting
+5. Code walkthrough and architecture
+6. Live mainnet canisters
 
-```bash
-# Build production bundle
-pnpm build
+## 🏆 Hackathon Submission
 
-# Deploy to ICP (via asset canister)
-dfx deploy frontend --network ic
+### ICP Track
+- ✅ Mainnet deployment with 6TC cycles
+- ✅ Rust canisters with stable storage
+- ✅ Multi-party signing mechanism
+- ✅ Professional code quality
 
-# Or deploy to Vercel
-vercel deploy
-```
+### Constellation Track
+- ✅ HGTP protocol implementation
+- ✅ L0 Global Network integration
+- ✅ DAG-based validation
+- ✅ Real-time network status
 
-### Environment Variables (Production)
+## 🤝 Contributing
 
-Ensure all production values are set:
-- Switch `NEXT_PUBLIC_ICP_HOST` to mainnet
-- Update canister IDs to production IDs
-- Use production API keys
-- Deploy NFT contract to Base mainnet
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
 
-## License
+## 📄 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-## Repository
+## 🔗 Links
 
-https://github.com/yourusername/attesta
+- **ICP Dashboard**: https://dashboard.internetcomputer.org
+- **Constellation Explorer**: https://testnet-explorer.constellationnetwork.io
+- **Base Sepolia Explorer**: https://sepolia.basescan.org
+- **Documentation**: [Coming soon]
+
+## 👥 Team
+
+Built for ICP + Constellation Hackathon 2024
+
+## 🙏 Acknowledgments
+
+- Internet Computer Protocol (DFINITY)
+- Constellation Network
+- Thirdweb Nexus
+- OpenAI
+- The blockchain community
+
+---
+
+**⚠️ Important**: This is hackathon/demo software. For production use, conduct thorough security audits and legal review.
