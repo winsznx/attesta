@@ -21,8 +21,18 @@ export async function createAgent(): Promise<HttpAgent> {
   // Fetch root key for local development (insecure, only for testing)
   if (IS_LOCAL) {
     try {
-      await agent.fetchRootKey();
+      // Add timeout to prevent hanging
+      await Promise.race([
+        agent.fetchRootKey(),
+        new Promise((_, reject) =>
+          setTimeout(() => reject(new Error("fetchRootKey timeout")), 5000)
+        ),
+      ]);
+      console.log("✅ Connected to local ICP replica");
     } catch (error) {
+      console.warn("⚠️ Could not fetch root key from local replica. Make sure dfx is running.");
+      console.warn("Error:", error);
+      // Don't throw - allow the agent to be used anyway
     }
   }
 
