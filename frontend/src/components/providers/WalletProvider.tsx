@@ -16,7 +16,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
   const { disconnect } = useDisconnect();
 
   // Use connector status for connection state
-  const isConnecting = connector?.connecting || false;
+  const isConnecting = false;
 
   const state: WalletState = {
     address: address || null,
