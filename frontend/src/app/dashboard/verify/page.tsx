@@ -247,7 +247,7 @@ export default function VerifyPage() {
                         Ethereum NFT
                       </span>
                       <Badge variant="outline" className="text-xs">
-                        {verificationResult.agreement.nft_token_id || "Pending"}
+                        Pending
                       </Badge>
                     </div>
                   </div>
