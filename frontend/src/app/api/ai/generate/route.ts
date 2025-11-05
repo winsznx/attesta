@@ -131,14 +131,8 @@ Now generate the COMPLETE legal document. Start with a title, then include all n
   }
 }
 
-// Disable x402 payment for now (development mode)
-// Re-enable in production by uncommenting and setting NEXUS_WALLET_SECRET
-export async function POST(request: NextRequest) {
-  return handleAIGeneration(request);
-}
-
-// Production: Use x402 payment protection
-// export const POST = withOptionalX402Payment(handleAIGeneration, {
-//   endpoint: "AI_GENERATION",
-//   method: "POST",
-// });
+// Use x402 payment protection with optional fallback
+export const POST = withOptionalX402Payment(handleAIGeneration, {
+  endpoint: "AI_GENERATION",
+  method: "POST",
+});
