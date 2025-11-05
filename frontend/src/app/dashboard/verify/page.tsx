@@ -171,7 +171,7 @@ export default function VerifyPage() {
                     </div>
                     <Badge
                       variant={
-                        verificationResult.agreement.status === "completed"
+                        verificationResult.agreement.status === "Signed"
                           ? "default"
                           : "secondary"
                       }
