@@ -34,6 +34,7 @@ import { useWallet } from "@/components/providers/WalletProvider";
 import { useAgreementData } from "@/lib/hooks/useAgreementData";
 import { useX402Payment } from "@/lib/hooks/useX402Payment";
 import { X402PaymentModal } from "@/components/payment/X402PaymentModal";
+import { createAgreementWithValidation } from "@/lib/services/agreement-service";
 import { sha256 } from "js-sha256";
 import { Principal } from "@dfinity/principal";
 import { convertPartyToPrincipal } from "@/lib/blockchain/icp/address-converter";
@@ -191,14 +192,26 @@ export default function CreateAgreementPage() {
         : Principal.anonymous().toText();
       const allParties = [creatorPrincipal, ...partyPrincipals];
 
-      const agreementId = await createAgreement(
-        selectedTemplate || "custom",
-        title,
-        contentHash,
-        allParties
+      // Create agreement with multi-chain validation (ICP + Constellation)
+      const result = await createAgreementWithValidation(
+        {
+          templateType: selectedTemplate || "custom",
+          title,
+          contentHash,
+          parties: allParties,
+          content,
+        },
+        createAgreement
       );
 
-      router.push(`/dashboard/agreements/${agreementId}`);
+      if (result.constellationDagHash) {
+        console.log("✅ Agreement validated on Constellation:", {
+          dagHash: result.constellationDagHash,
+          ordinal: result.constellationOrdinal,
+        });
+      }
+
+      router.push(`/dashboard/agreements/${result.agreementId}`);
     } catch (error: any) {
       const errorMessage = error?.message || "Failed to create agreement";
       alert(`Failed to create agreement: ${errorMessage}`);
