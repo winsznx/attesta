@@ -4,6 +4,7 @@ import { useWallet } from "@/components/providers/WalletProvider";
 import { StatsCard } from "@/components/dashboard/StatsCard";
 import { QuickActions } from "@/components/dashboard/QuickActions";
 import { AgreementCard } from "@/components/dashboard/AgreementCard";
+import { ConstellationStatus } from "@/components/dashboard/ConstellationStatus";
 import {
   FileText,
   Clock,
@@ -266,6 +267,9 @@ export default function DashboardPage() {
         {/* Sidebar - Compact on large screens */}
         <div className="lg:col-span-1 space-y-4">
           <QuickActions />
+
+          {/* Constellation Network Status */}
+          <ConstellationStatus />
 
           {/* Getting Started Card */}
           <Card className="border-fuchsia-200 dark:border-fuchsia-900/50">
