@@ -101,7 +101,7 @@ export async function getProof(
 ): Promise<NotarizationProof | null> {
   const actor = getProofVaultActor();
   const result = await actor.get_proof(proofId);
-  return result.length > 0 ? result[0] : null;
+  return result.length > 0 ? (result[0] ?? null) : null;
 }
 
 /**
