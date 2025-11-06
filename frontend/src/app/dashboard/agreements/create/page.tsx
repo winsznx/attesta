@@ -40,6 +40,7 @@ import { Principal } from "@dfinity/principal";
 import { convertPartyToPrincipal } from "@/lib/blockchain/icp/address-converter";
 import { DocumentEditor } from "@/components/agreements/wizard/DocumentEditor";
 import { LegalDisclaimerBanner } from "@/components/legal/DisclaimerBanner";
+import { AcknowledgmentCheckboxes } from "@/components/legal/AcknowledgmentCheckboxes";
 
 const TEMPLATES = [
   {
@@ -101,6 +102,7 @@ export default function CreateAgreementPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [isCreating, setIsCreating] = useState(false);
   const [useAI, setUseAI] = useState(true);
+  const [acknowledgementsValid, setAcknowledgementsValid] = useState(false);
   const { createAgreement } = useAgreementData();
 
   const handleTemplateSelect = (templateId: string) => {
@@ -601,13 +603,18 @@ export default function CreateAgreementPage() {
                 </div>
               )}
 
+              {/* Legal Acknowledgments */}
+              <div className="mt-6">
+                <AcknowledgmentCheckboxes onValidChange={setAcknowledgementsValid} />
+              </div>
+
               <div className="flex justify-between pt-4">
                 <Button variant="outline" onClick={() => setStep("ai")}>
                   Back
                 </Button>
                 <Button
                   onClick={handleCreateAgreement}
-                  disabled={isCreating}
+                  disabled={isCreating || !acknowledgementsValid}
                   className="bg-fuchsia-600 hover:bg-fuchsia-700"
                 >
                   {isCreating ? (
