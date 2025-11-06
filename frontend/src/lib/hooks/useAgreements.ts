@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { Agreement, UserStats } from "../blockchain/icp/actors";
+import { UserStats } from "../blockchain/icp/actors";
+import { AgreementUI } from "../blockchain/icp/candid/agreement_manager";
 import { AgreementService } from "../services/agreements";
 
 export function useAgreements(userPrincipal?: string) {
-  const [agreements, setAgreements] = useState<Agreement[]>([]);
+  const [agreements, setAgreements] = useState<AgreementUI[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
