@@ -34,10 +34,10 @@ const techStack = [
     color: "bg-fuchsia-700",
   },
   {
-    name: "x402",
-    role: "Identity Layer",
-    description: "Zero-knowledge identity verification",
-    icon: Shield,
+    name: "Nexus (x402)",
+    role: "Payment Layer",
+    description: "Micropayments for AI API calls via Thirdweb",
+    icon: Zap,
     color: "bg-fuchsia-500",
   },
   {
@@ -137,8 +137,8 @@ export function TechStackSection() {
                 <p className="text-sm text-muted-foreground">Certificates</p>
               </div>
               <div className="text-center p-4 rounded-lg bg-fuchsia-100 dark:bg-fuchsia-900/30">
-                <p className="font-semibold">x402</p>
-                <p className="text-sm text-muted-foreground">Identity</p>
+                <p className="font-semibold">Nexus</p>
+                <p className="text-sm text-muted-foreground">Payments</p>
               </div>
             </div>
           </div>
