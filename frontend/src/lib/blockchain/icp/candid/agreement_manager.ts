@@ -1,6 +1,6 @@
 import { IDL } from "@dfinity/candid";
 
-export const idlFactory = ({ IDL }: { IDL: typeof IDL }) => {
+export const idlFactory = ({ IDL }: any) => {
   // AgreementStatus variant - matches Rust enum
   const AgreementStatus = IDL.Variant({
     Draft: IDL.Null,
