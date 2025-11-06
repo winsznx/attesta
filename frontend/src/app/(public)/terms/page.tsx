@@ -11,7 +11,7 @@ export default function TermsOfServicePage() {
             Terms of Service
           </h1>
           <p className="text-sm text-muted-foreground mb-8">
-            Last Updated: January 6, 2025
+            Last Updated: November 6, 2025
           </p>
 
           <div className="prose prose-slate dark:prose-invert max-w-none space-y-6">
@@ -199,7 +199,7 @@ export default function TermsOfServicePage() {
                 For questions about these Terms, please contact us at:
               </p>
               <p className="font-mono mt-2">
-                Email: legal@attesta.app<br />
+                Email: attestahq@proton.me<br />
                 GitHub: https://github.com/winsznx/attesta
               </p>
             </section>
