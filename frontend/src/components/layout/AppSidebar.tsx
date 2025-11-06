@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import {
   LayoutDashboard,
@@ -73,6 +74,13 @@ export function AppSidebar() {
       {/* Logo */}
       <div className="flex h-16 shrink-0 items-center border-b px-6">
         <Link href="/dashboard" className="flex items-center space-x-2">
+          <Image
+            src="/attesta.jpg"
+            alt="Attesta Logo"
+            width={28}
+            height={28}
+            className="rounded-lg"
+          />
           <span className="text-xl font-bold text-fuchsia-600 dark:text-fuchsia-400">
             Attesta
           </span>
