@@ -76,15 +76,37 @@ export function AppFooter() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 Attesta. All rights reserved.</p>
-          <p className="mt-2">
-            <Link href="/terms" className="hover:text-foreground underline">Terms</Link>
-            {" · "}
-            <Link href="/privacy" className="hover:text-foreground underline">Privacy</Link>
-            {" · "}
-            Not legal advice - consult an attorney
-          </p>
+        <div className="mt-8 pt-8 border-t">
+          <div className="flex justify-center gap-6 mb-4">
+            <a
+              href="https://x.com/attestahq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Follow us on X (Twitter)"
+            >
+              <Twitter className="h-5 w-5" />
+            </a>
+            <a
+              href="https://github.com/winsznx/attesta"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="View our GitHub repository"
+            >
+              <Github className="h-5 w-5" />
+            </a>
+          </div>
+          <div className="text-center text-sm text-muted-foreground">
+            <p>&copy; 2025 Attesta. All rights reserved.</p>
+            <p className="mt-2">
+              <Link href="/terms" className="hover:text-foreground underline">Terms</Link>
+              {" · "}
+              <Link href="/privacy" className="hover:text-foreground underline">Privacy</Link>
+              {" · "}
+              Not legal advice - consult an attorney
+            </p>
+          </div>
         </div>
       </div>
     </footer>
