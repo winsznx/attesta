@@ -8,11 +8,20 @@ const openai = new OpenAI({
 
 // Actual handler logic (executed after payment)
 async function handleAIGeneration(request: NextRequest) {
+  console.log("[AI Generation] API called");
+
   try {
     const body = await request.json();
     const { description, templateType, context } = body;
 
+    console.log("[AI Generation] Request data:", {
+      description: description?.substring(0, 50) + "...",
+      templateType,
+      hasContext: !!context
+    });
+
     if (!description) {
+      console.error("[AI Generation] ERROR: No description provided");
       return NextResponse.json(
         { error: "Description is required" },
         { status: 400 }
@@ -20,11 +29,14 @@ async function handleAIGeneration(request: NextRequest) {
     }
 
     if (!process.env.OPENAI_API_KEY) {
+      console.error("[AI Generation] ERROR: OpenAI API key not configured");
       return NextResponse.json(
         { error: "OpenAI API key not configured" },
         { status: 500 }
       );
     }
+
+    console.log("[AI Generation] OpenAI API key found");
 
     // Build the prompt based on template type
     let systemPrompt = `You are a professional legal document generator. Your task is to create complete, formal legal agreements from scratch based on user requirements.
@@ -96,6 +108,8 @@ ${context ? `ADDITIONAL CONTEXT:\n${context}` : ""}
 
 Now generate the COMPLETE legal document. Start with a title, then include all necessary sections with proper legal language and formatting. Make it detailed and ready for actual use.`;
 
+    console.log("[AI Generation] Calling OpenAI API...");
+
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
@@ -106,14 +120,19 @@ Now generate the COMPLETE legal document. Start with a title, then include all n
       max_tokens: 4000,
     });
 
+    console.log("[AI Generation] OpenAI response received");
+
     const generatedContent = completion.choices[0]?.message?.content;
 
     if (!generatedContent) {
+      console.error("[AI Generation] ERROR: No content generated");
       return NextResponse.json(
         { error: "Failed to generate document" },
         { status: 500 }
       );
     }
+
+    console.log("[AI Generation] Document generated successfully");
 
     return NextResponse.json({
       content: generatedContent,
@@ -121,6 +140,13 @@ Now generate the COMPLETE legal document. Start with a title, then include all n
       usage: completion.usage,
     });
   } catch (error: any) {
+    console.error("[AI Generation] ERROR:", error);
+    console.error("[AI Generation] Error details:", {
+      message: error.message,
+      stack: error.stack,
+      name: error.name,
+    });
+
     return NextResponse.json(
       {
         error: "Failed to generate document",
