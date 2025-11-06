@@ -19,12 +19,11 @@ export function getNexusFacilitator() {
   }
 
   const walletSecret = process.env.NEXUS_WALLET_SECRET;
-  const walletAddress = process.env.NEXUS_WALLET_ADDRESS;
 
-  if (!walletSecret || !walletAddress) {
+  if (!walletSecret) {
     console.warn(
-      "NEXUS_WALLET_SECRET or NEXUS_WALLET_ADDRESS not set. " +
-      "X402 payments will not be available."
+      "[Nexus] NEXUS_WALLET_SECRET not set. " +
+      "X402 payments will not be available. AI generation will work without payment."
     );
     return null;
   }
@@ -32,12 +31,12 @@ export function getNexusFacilitator() {
   try {
     nexusFacilitator = createFacilitator({
       walletSecret,
-      walletAddress,
     } as any);
 
+    console.log("[Nexus] Facilitator initialized successfully");
     return nexusFacilitator;
   } catch (error) {
-    console.error("Failed to initialize Nexus facilitator:", error);
+    console.error("[Nexus] Failed to initialize facilitator:", error);
     return null;
   }
 }
