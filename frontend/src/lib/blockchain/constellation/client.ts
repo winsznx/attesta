@@ -57,8 +57,8 @@ export class ConstellationClient {
         ? "https://l0-lb-mainnet.constellationnetwork.io"
         : "https://l0-lb-testnet.constellationnetwork.io");
     this.blockExplorerUrl = this.isMainnet
-      ? "https://explorer.constellationnetwork.io"
-      : "https://testnet-explorer.constellationnetwork.io";
+      ? "https://dagexplorer.io"
+      : "https://testnet.dagexplorer.io";
   }
 
   /**
