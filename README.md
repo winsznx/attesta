@@ -6,7 +6,7 @@
 [![ICP Mainnet](https://img.shields.io/badge/ICP-Mainnet-29ABE2)](https://dashboard.internetcomputer.org)
 [![Constellation](https://img.shields.io/badge/Constellation-TestNet-blueviolet)](https://testnet-explorer.constellationnetwork.io)
 
-## 🌟 Overview
+## Overview
 
 Attesta is a production-ready legal document platform that leverages multiple blockchain networks to provide unprecedented security and verification:
 
@@ -15,7 +15,7 @@ Attesta is a production-ready legal document platform that leverages multiple bl
 - **Ethereum/Base**: NFT certificate minting for visual proof
 - **AI Generation**: GPT-4 powered document creation with X402 micropayments
 
-## 🎯 Live Deployment
+## Live Deployment
 
 ### ICP Mainnet Canisters
 - **Agreement Manager**: [`g5tri-niaaa-aaaag-auhuq-cai`](https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.icp0.io/?id=g5tri-niaaa-aaaag-auhuq-cai)
@@ -29,7 +29,7 @@ Attesta is a production-ready legal document platform that leverages multiple bl
 - **Protocol**: HGTP 1.0 compliant
 - **Validation**: Real-time DAG proof generation
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -50,7 +50,7 @@ Attesta is a production-ready legal document platform that leverages multiple bl
        └──────────────┘  └────────────┘  └────────────┘
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -82,7 +82,7 @@ cd ../backend/icp
 cargo build
 ```
 
-## ⚙️ Environment Configuration
+## Environment Configuration
 
 ### Step 1: Copy Environment Template
 
@@ -95,7 +95,7 @@ cp .env.example .env.local
 
 Open `.env.local` and fill in the following:
 
-#### 🔑 **Required for Development:**
+#### Required for Development:
 
 ```bash
 # WalletConnect Project ID (Get from: https://cloud.reown.com/)
@@ -108,7 +108,7 @@ OPENAI_API_KEY=sk-...your_key_here
 NEXUS_WALLET_SECRET=your_secret_here
 ```
 
-#### 🌐 **Network Configuration:**
+#### Network Configuration:
 
 **For Mainnet (Production):**
 ```bash
@@ -127,13 +127,13 @@ NEXT_PUBLIC_ICP_HOST=http://localhost:4943
 NEXT_PUBLIC_CONSTELLATION_NETWORK=testnet
 ```
 
-#### 🔐 **Important Security Notes:**
+#### Important Security Notes:
 
-- ⚠️ **NEVER commit `.env.local` to git!**
-- ✅ `.env.local` is already in `.gitignore`
-- ✅ Use `.env.example` as a reference only
-- ✅ Use different keys for development and production
-- ✅ Keep your private keys secure
+- NEVER commit `.env.local` to git
+- `.env.local` is already in `.gitignore`
+- Use `.env.example` as a reference only
+- Use different keys for development and production
+- Keep your private keys secure
 
 ### Step 3: Verify Configuration
 
@@ -143,7 +143,7 @@ ls -la .env.local  # Should exist
 git status         # Should NOT show .env.local
 ```
 
-## 🏃 Running the Application
+## Running the Application
 
 ### Option 1: Production (Mainnet)
 
@@ -171,7 +171,7 @@ cd frontend
 npm run dev
 ```
 
-## 🌍 Deploying to Production
+## Deploying to Production
 
 ### Frontend Deployment (Vercel - Recommended)
 
@@ -205,7 +205,7 @@ dfx deploy --network ic
 # Note the canister IDs and update frontend .env.local
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Test ICP Canisters (Local)
 
@@ -225,7 +225,7 @@ dfx canister call agreement_manager create_agreement '(
 
 ```bash
 # Check console logs when creating an agreement
-# Look for: ✅ Constellation validation created
+# Look for: Constellation validation created
 ```
 
 ### Test Frontend
@@ -237,7 +237,7 @@ npm run build         # Test production build
 npm run type-check    # Check TypeScript errors
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 attesta/
@@ -268,7 +268,7 @@ attesta/
 └── README.md              # This file
 ```
 
-## 🔑 Key Features
+## Key Features
 
 ### 1. Multi-Chain Validation
 - **ICP**: Primary storage with Rust canisters
@@ -291,7 +291,7 @@ attesta/
 - Responsive UI with Tailwind CSS
 - Multi-wallet support
 
-## 🎥 Demo Video
+## Demo Video
 
 [Link to demo video] - Coming soon!
 
@@ -303,21 +303,21 @@ attesta/
 5. Code walkthrough and architecture
 6. Live mainnet canisters
 
-## 🏆 Hackathon Submission
+## Hackathon Submission
 
 ### ICP Track
-- ✅ Mainnet deployment with 6TC cycles
-- ✅ Rust canisters with stable storage
-- ✅ Multi-party signing mechanism
-- ✅ Professional code quality
+- Mainnet deployment with 6TC cycles
+- Rust canisters with stable storage
+- Multi-party signing mechanism
+- Professional code quality
 
 ### Constellation Track
-- ✅ HGTP protocol implementation
-- ✅ L0 Global Network integration
-- ✅ DAG-based validation
-- ✅ Real-time network status
+- HGTP protocol implementation
+- L0 Global Network integration
+- DAG-based validation
+- Real-time network status
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -325,22 +325,22 @@ attesta/
 4. Add tests
 5. Submit a pull request
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
 
-## 🔗 Links
+## Links
 
 - **ICP Dashboard**: https://dashboard.internetcomputer.org
 - **Constellation Explorer**: https://testnet-explorer.constellationnetwork.io
 - **Base Sepolia Explorer**: https://sepolia.basescan.org
 - **Documentation**: [Coming soon]
 
-## 👥 Team
+## Team
 
-Built for ICP + Constellation Hackathon 2024
+Built for ICP + Constellation Hackathon 2025
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Internet Computer Protocol (DFINITY)
 - Constellation Network
@@ -350,4 +350,4 @@ Built for ICP + Constellation Hackathon 2024
 
 ---
 
-**⚠️ Important**: This is hackathon/demo software. For production use, conduct thorough security audits and legal review.
+**Important**: This is hackathon/demo software. For production use, conduct thorough security audits and legal review.
