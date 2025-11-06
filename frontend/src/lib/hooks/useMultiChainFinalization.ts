@@ -138,7 +138,7 @@ export function useMultiChainFinalization() {
         }
 
         // Get wallet client from connector
-        const walletClient = connector ? await connector.getWalletClient() : null;
+        const walletClient = connector ? await (connector as any).getWalletClient() : null;
         if (!walletClient) {
           throw new Error("Could not get wallet client");
         }
