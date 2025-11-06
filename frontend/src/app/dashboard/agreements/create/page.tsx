@@ -39,6 +39,7 @@ import { sha256 } from "js-sha256";
 import { Principal } from "@dfinity/principal";
 import { convertPartyToPrincipal } from "@/lib/blockchain/icp/address-converter";
 import { DocumentEditor } from "@/components/agreements/wizard/DocumentEditor";
+import { LegalDisclaimerBanner } from "@/components/legal/DisclaimerBanner";
 
 const TEMPLATES = [
   {
@@ -259,6 +260,9 @@ export default function CreateAgreementPage() {
           Create a new blockchain-backed legal agreement with AI assistance
         </p>
       </motion.div>
+
+      {/* Legal Disclaimer */}
+      <LegalDisclaimerBanner />
 
       {/* Progress Steps */}
       <div className="mb-8">
