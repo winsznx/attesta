@@ -11,7 +11,7 @@ let nexusFacilitator: ReturnType<typeof createFacilitator> | null = null;
 /**
  * Get or create the Nexus facilitator instance
  *
- * @returns Configured Nexus facilitator
+ * @returns Configured Nexus facilitator or null if not configured
  */
 export function getNexusFacilitator() {
   if (nexusFacilitator) {
@@ -19,23 +19,26 @@ export function getNexusFacilitator() {
   }
 
   const walletSecret = process.env.NEXUS_WALLET_SECRET;
+  const walletAddress = process.env.NEXUS_WALLET_ADDRESS;
 
-  if (!walletSecret) {
-    throw new Error(
-      "NEXUS_WALLET_SECRET environment variable is not set. " +
-      "Please get your wallet secret from the Nexus Dashboard at https://nexus.thirdweb.com"
+  if (!walletSecret || !walletAddress) {
+    console.warn(
+      "NEXUS_WALLET_SECRET or NEXUS_WALLET_ADDRESS not set. " +
+      "X402 payments will not be available."
     );
+    return null;
   }
 
   try {
     nexusFacilitator = createFacilitator({
       walletSecret,
-    });
+      walletAddress,
+    } as any);
 
     return nexusFacilitator;
   } catch (error) {
     console.error("Failed to initialize Nexus facilitator:", error);
-    throw error;
+    return null;
   }
 }
 
