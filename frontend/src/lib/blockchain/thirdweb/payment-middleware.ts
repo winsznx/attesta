@@ -49,6 +49,12 @@ export function withX402Payment(
       // Get or create Nexus facilitator
       const facilitator = getNexusFacilitator();
 
+      // If facilitator is not configured, skip payment validation
+      if (!facilitator) {
+        console.warn("X402 facilitator not configured, skipping payment validation");
+        return await handler(request);
+      }
+
       // Construct the resource URL
       const url = new URL(request.url);
       const resourceUrl = `${url.origin}${url.pathname}`;
