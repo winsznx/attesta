@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="text-xl font-semibold mb-3 mt-4">7.4 Exercising Your Rights</h3>
               <p>
-                To exercise any of these rights, contact us at: <strong>attestahq@proton.me</strong>
+Ÿ                To exercise any of these rights, contact us at: <strong>attestahq@proton.me</strong>
               </p>
             </section>
 
