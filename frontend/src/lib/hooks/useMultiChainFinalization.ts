@@ -211,6 +211,7 @@ export function useMultiChainFinalization() {
         return true;
       } catch (error) {
         setStatus({
+          icp: status.icp,
           constellation: status.constellation,
           ethereum: status.ethereum,
           error: error instanceof Error ? error.message : "Unknown error",
