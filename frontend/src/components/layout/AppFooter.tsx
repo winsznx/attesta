@@ -49,44 +49,42 @@ export function AppFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="hover:text-foreground">
+                <Link href="https://github.com/winsznx/attesta" className="hover:text-foreground" target="_blank">
                   Documentation
                 </Link>
               </li>
             </ul>
           </div>
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold">Connect</h4>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Github className="h-5 w-5" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
+            <h4 className="text-sm font-semibold">Legal</h4>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li>
+                <Link href="/terms" className="hover:text-foreground">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-foreground">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <a href="https://github.com/winsznx/attesta" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">
+                  GitHub
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
           <p>&copy; 2025 Attesta. All rights reserved.</p>
+          <p className="mt-2">
+            <Link href="/terms" className="hover:text-foreground underline">Terms</Link>
+            {" · "}
+            <Link href="/privacy" className="hover:text-foreground underline">Privacy</Link>
+            {" · "}
+            Not legal advice - consult an attorney
+          </p>
         </div>
       </div>
     </footer>
