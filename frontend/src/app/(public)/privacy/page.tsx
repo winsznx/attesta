@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
 
               <h3 className="text-xl font-semibold mb-3 mt-4">7.4 Exercising Your Rights</h3>
               <p>
-                To exercise any of these rights, contact us at: <strong>privacy@attesta.app</strong>
+                To exercise any of these rights, contact us at: <strong>attestahq@proton.me</strong>
               </p>
             </section>
 
@@ -263,9 +263,9 @@ export default function PrivacyPolicyPage() {
                 If you have questions about this Privacy Policy or our privacy practices, contact us at:
               </p>
               <p className="font-mono mt-2">
-                Email: privacy@attesta.app<br />
+                Email: attestahq@proton.me<br />
                 GitHub: https://github.com/winsznx/attesta<br />
-                Data Protection Officer: dpo@attesta.app
+                Data Protection Officer: attestahq@proton.me
               </p>
             </section>
 
