@@ -21,9 +21,10 @@
     ],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": []
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "typechain-types"]
+  "exclude": ["node_modules", "typechain-types", "scripts", "contracts", "hardhat.config.js"]
 }
 
