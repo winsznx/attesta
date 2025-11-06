@@ -34,9 +34,9 @@ const features = [
   },
   {
     icon: Users,
-    title: "Identity Verification",
+    title: "Wallet-Based Identity",
     description:
-      "Zero-knowledge identity verification with x402 ensures privacy while proving authenticity.",
+      "Verify identity through blockchain wallets - no email, passwords, or personal data required.",
   },
   {
     icon: Eye,
