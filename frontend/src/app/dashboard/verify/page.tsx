@@ -275,7 +275,7 @@ export default function VerifyPage() {
                     className="text-xs"
                     onClick={() =>
                       window.open(
-                        `https://testnet-explorer.constellationnetwork.io`,
+                        `https://testnet.dagexplorer.io`,
                         "_blank"
                       )
                     }
