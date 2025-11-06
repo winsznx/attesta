@@ -6,6 +6,7 @@ import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
 import { TechStackSection } from "@/components/landing/TechStackSection";
 import { UseCasesSection } from "@/components/landing/UseCasesSection";
 import { CTASection } from "@/components/landing/CTASection";
+import { ScrollToTop } from "@/components/ui/ScrollToTop";
 
 export default function LandingPage() {
   return (
@@ -20,6 +21,7 @@ export default function LandingPage() {
         <CTASection />
       </main>
       <AppFooter />
+      <ScrollToTop />
     </div>
   );
 }
