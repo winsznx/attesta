@@ -9,7 +9,7 @@ import {
   getWalletProvider,
   ICPWalletInfo,
 } from "@/lib/blockchain/icp/wallet-providers";
-import { addressToPrincipal } from "@/lib/blockchain/icp/address-converter";
+import { ethereumAddressToPrincipal } from "@/lib/blockchain/icp/address-converter";
 
 const WalletContext = createContext<WalletContextType | undefined>(undefined);
 
@@ -32,7 +32,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
 
   // Determine principal (ICP native or converted from EVM)
   const principal = icpWallet?.principal ||
-    (address ? addressToPrincipal(address).toText() : null);
+    (address ? ethereumAddressToPrincipal(address).toText() : null);
 
   const state: WalletState = {
     // EVM
@@ -133,7 +133,7 @@ export function WalletProvider({ children }: WalletProviderProps) {
     }
   };
 
-  const handleSwitchChain = async (targetChainId: number) => {
+  const handleSwitchChain = async (_targetChainId: number) => {
     try {
       const modal = appKitModal || initializeAppKit();
       if (modal) {

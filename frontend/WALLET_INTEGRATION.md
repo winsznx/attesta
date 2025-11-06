@@ -14,7 +14,7 @@ Attesta now supports **both EVM and ICP native wallets** for multi-party agreeme
 
 **How it works:**
 - Uses Reown AppKit (formerly WalletConnect)
-- EVM addresses are converted to ICP principals using `addressToPrincipal()`
+- EVM addresses are converted to ICP principals using `ethereumAddressToPrincipal()`
 - Users sign with their EVM wallet
 
 ### ICP Wallets
@@ -181,10 +181,10 @@ async function signMessageWithICP(message: string) {
 EVM addresses are converted to ICP principals using:
 
 ```typescript
-import { addressToPrincipal } from '@/lib/blockchain/icp/address-converter';
+import { ethereumAddressToPrincipal } from '@/lib/blockchain/icp/address-converter';
 
 const evmAddress = "0x1234...5678";
-const principal = addressToPrincipal(evmAddress);
+const principal = ethereumAddressToPrincipal(evmAddress);
 
 console.log(principal.toText()); // "abc12...xyz89"
 ```

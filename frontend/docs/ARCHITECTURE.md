@@ -361,7 +361,7 @@ class EVMWalletProvider implements WalletProvider {
 
   async connect() {
     const address = await connectEVM();
-    return addressToPrincipal(address); // Convert to ICP principal
+    return ethereumAddressToPrincipal(address); // Convert to ICP principal
   }
 
   async signMessage(message: string) {
@@ -390,12 +390,12 @@ class ICPWalletProvider implements WalletProvider {
 import { Principal } from '@dfinity/principal';
 import { sha224 } from 'js-sha256';
 
-export function addressToPrincipal(address: string): Principal {
+export function ethereumAddressToPrincipal(address: string): Principal {
   // Remove 0x prefix
   const addr = address.toLowerCase().replace('0x', '');
 
   // Hash the address
-  const hash = sha224(Buffer.from(addr, 'hex'));
+  const hash = sha256(Buffer.from(addr, 'hex'));
 
   // Convert to Principal
   return Principal.fromUint8Array(Buffer.from(hash, 'hex').slice(0, 29));

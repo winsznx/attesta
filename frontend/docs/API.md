@@ -35,7 +35,7 @@ All API requests require wallet-based authentication. Users must connect their w
 const address = await connectWallet();
 
 // 2. Convert to principal (if EVM)
-const principal = addressToPrincipal(address);
+const principal = ethereumAddressToPrincipal(address);
 
 // 3. Sign message for verification
 const signature = await signMessage(principal);

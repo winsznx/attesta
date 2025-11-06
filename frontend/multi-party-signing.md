@@ -2,7 +2,7 @@
 
 ## Current State
 - Agreement creator signs with WalletConnect (EVM wallet)
-- EVM addresses are converted to ICP principals using `addressToPrincipal()`
+- EVM addresses are converted to ICP principals using `ethereumAddressToPrincipal()`
 - All signatures go through EVM wallet flow
 
 ## Requirement
@@ -14,7 +14,7 @@
 
 ### 1. Detect Principal Type
 When a party attempts to sign, check if the principal is:
-- **EVM-derived**: `addressToPrincipal(evmAddress)` format
+- **EVM-derived**: `ethereumAddressToPrincipal(evmAddress)` format
 - **Native ICP**: Direct principal from ICP wallet
 
 ### 2. Dual Wallet Support
@@ -32,7 +32,7 @@ const evmProvider: WalletProvider = {
   type: 'EVM',
   connect: async () => {
     const address = await connectEVM();
-    return addressToPrincipal(address);
+    return ethereumAddressToPrincipal(address);
   },
   sign: signWithEVM
 };

@@ -39,7 +39,7 @@ Creator → Generate Agreement (AI) → Add Parties → Deploy On-Chain
 
 **EVM-Derived Principals:**
 - Users connect with WalletConnect (MetaMask, Coinbase, etc.)
-- EVM address converted to ICP principal: `addressToPrincipal(evmAddress)`
+- EVM address converted to ICP principal: `ethereumAddressToPrincipal(evmAddress)`
 - Signs with EVM wallet
 
 **ICP Native Principals:**
